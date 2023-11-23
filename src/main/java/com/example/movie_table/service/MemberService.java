@@ -1,9 +1,14 @@
 package com.example.movie_table.service;
 
 import com.example.movie_table.Entity.Member;
+import com.example.movie_table.dto.LoginRequestDto;
+import com.example.movie_table.dto.LoginResponseDto;
+import com.example.movie_table.dto.UpdateResponseDto;
 import com.example.movie_table.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,17 +34,32 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    public void deleteMemberById(Long id) {
-        memberRepository.deleteById(id);
+    public Optional<Member> getMemberByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 
-    public void updateMemberById(Long id, Member member) {
+    public UpdateResponseDto updateMemberById(Long id, Member member) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if (memberOptional.isPresent()) {
             member.setId(id);
             memberRepository.save(member);
         }
+        return new UpdateResponseDto(id, member.getName(), member.getEmail());
+    }
+
+    public void deleteMemberById(Long id) {
+        memberRepository.deleteById(id);
     }
 
 
+
+    public LoginResponseDto login(LoginRequestDto dto) {
+        Member member = memberRepository.findByEmail(dto.getEmail()).orElseThrow();
+        if (member.getPassword().equals(dto.getPassword())) {
+            return new LoginResponseDto(member.getId(), member.getEmail());
+        }
+        else {
+            throw new IllegalStateException();
+        }
+    }
 }
