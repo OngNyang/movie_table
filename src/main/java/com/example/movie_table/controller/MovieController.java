@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/movie")
+//@RestController("/movie")
+@RestController
+@RequestMapping("/movie")
 public class MovieController {
 
     private final MovieService movieService;
 
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController( MovieService movieService) {
+
         this.movieService = movieService;
     }
 
@@ -33,19 +36,19 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(Long id) {
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
         Movie movie = (Movie)movieService.getMovieById(id).orElseThrow();
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MovieUpdateResponseDto> updateMovieById(Long id, Movie movie) {
+    public ResponseEntity<MovieUpdateResponseDto> updateMovieById(@PathVariable Long id, @RequestBody Movie movie) {
         MovieUpdateResponseDto updatedMovie = movieService.updateMovieById(id, movie);
         return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteMovieById(Long id) {
+    public ResponseEntity<String> deleteMovieById(@PathVariable Long id) {
         movieService.deleteMovieById(id);
         return new ResponseEntity<>("삭제되었습니다.", HttpStatus.NO_CONTENT);
     }

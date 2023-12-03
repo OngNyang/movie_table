@@ -6,9 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Score {
+public class Wishlist {
     @Id
-    @Column(name = "score_id")
+    @Column(name = "wishlist_id")
     private Long id;
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -16,10 +16,9 @@ public class Score {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
-    private int score;
 }
 
-//        + star_meter_id INT
+//
+//+ wishlist_id INT
 //        + movie_id INT
 //        + member_id INT
-//        + score INT

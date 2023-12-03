@@ -23,6 +23,10 @@ public class Movie {
     private List<Actor>     actors;
     private LocalDate       releaseDate;
     private Double          averageRating;
+    @OneToMany(mappedBy = "movie")
+    private List<Wishlist> wishlists;
+    @OneToMany(mappedBy = "movie")
+    private List<Score> scores;
 
     public MovieUpdateResponseDto toDto() {
         return new MovieUpdateResponseDto(this.id, this.title, this.directors, this.genres, this.actors, this.releaseDate, this.averageRating);
