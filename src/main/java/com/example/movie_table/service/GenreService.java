@@ -23,13 +23,13 @@ public class GenreService {
         return genreRepository.findById(id);
     }
 
-    public Genre updateGenreById(Long id, Genre genre) {
+    public GenreUpdateResponseDto updateGenreById(Long id, Genre genre) {
         Optional<Genre> genreOptional = genreRepository.findById(id);
         if (genreOptional.isPresent()) {
             genre.setId(id);
             genreRepository.save(genre);
         }
-        return GenreUpdateResponseDto(id, genreOptional.getName());
+        return new GenreUpdateResponseDto(id, genre.getName());
     }
 
     public void deleteGenreById(Long id) {

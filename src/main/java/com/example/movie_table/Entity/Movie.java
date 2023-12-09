@@ -32,3 +32,4 @@ public class Movie {
         return new MovieUpdateResponseDto(this.id, this.title, this.directors, this.genres, this.actors, this.releaseDate, this.averageRating);
     }
 }
+

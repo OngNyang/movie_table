@@ -1,6 +1,9 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Movie;
+import com.example.movie_table.dto.MemberReadResponseDto;
+import com.example.movie_table.dto.MovieCreateResponseDto;
+import com.example.movie_table.dto.MovieReadResponseDto;
 import com.example.movie_table.dto.MovieUpdateResponseDto;
 import com.example.movie_table.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +22,29 @@ public class MovieController {
 
     @Autowired
     public MovieController( MovieService movieService) {
-
         this.movieService = movieService;
     }
 
     @PostMapping
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        Movie createMovie = movieService.createMovie(movie);
+    public ResponseEntity<MovieCreateResponseDto> createMovie(@RequestBody Movie movie) {
+        MovieCreateResponseDto createMovie = movieService.createMovie(movie);
         return new ResponseEntity<>(createMovie, HttpStatus.CREATED);
+
+
     }
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies() {
-        List<Movie> movies = movieService.getAllMovies();
+    public ResponseEntity<List<MovieReadResponseDto>> getAllMovies() {
+        List<MovieReadResponseDto> movies = movieService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
-        Movie movie = (Movie)movieService.getMovieById(id).orElseThrow();
+    public ResponseEntity<MovieReadResponseDto> getMovieById(@PathVariable Long id) {
+        MovieReadResponseDto movie = movieService.getMovieById(id);
         return new ResponseEntity<>(movie, HttpStatus.OK);
+//        Movie movie = (Movie)movieService.getMovieById(id).orElseThrow();
+//        return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

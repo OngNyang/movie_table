@@ -1,6 +1,8 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Score;
+import com.example.movie_table.dto.ScoreCreateResponseDto;
+import com.example.movie_table.dto.ScoreReadResponseDto;
 import com.example.movie_table.dto.ScoreUpdateResponseDto;
 import com.example.movie_table.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,14 @@ public class ScoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Score> createScore(@RequestBody  Score score) {
-        Score createdScore = scoreService.createScore(score);
+    public ResponseEntity<ScoreCreateResponseDto> createScore(@RequestBody  Score score) {
+        ScoreCreateResponseDto createdScore = scoreService.createScore(score);
         return new ResponseEntity<>(createdScore, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Score> getScoreById(@PathVariable Long id) {
-        Score score = scoreService.getScoreById(id).orElseThrow(null);
+    public ResponseEntity<ScoreReadResponseDto> getScoreById(@PathVariable Long id) {
+        ScoreReadResponseDto score = scoreService.getScoreById(id);
         return new ResponseEntity<>(score, HttpStatus.OK);
     }
 

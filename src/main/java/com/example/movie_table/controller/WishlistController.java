@@ -2,6 +2,8 @@ package com.example.movie_table.controller;
 
 
 import com.example.movie_table.Entity.Wishlist;
+import com.example.movie_table.dto.WishlistCreateResponseDto;
+import com.example.movie_table.dto.WishlistReadResponseDto;
 import com.example.movie_table.dto.WishlistUpdateResponseDto;
 import com.example.movie_table.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,16 @@ public class WishlistController {
     }
 
     @PostMapping
-    public ResponseEntity<Wishlist> createWishlist(@RequestBody Wishlist wishlist) {    //얘도 dto를 만들어서 받아야할까?
-        Wishlist createdWishlist = wishlistService.createWishlist(wishlist);
+    public ResponseEntity<WishlistCreateResponseDto> createWishlist(@RequestBody Wishlist wishlist) {    //얘도 dto를 만들어서 받아야할까?
+//        Wishlist createdWishlist = wishlistService.createWishlist(wishlist);
+//        return new ResponseEntity<>(createdWishlist, HttpStatus.CREATED);
+        WishlistCreateResponseDto createdWishlist = wishlistService.createWishlist(wishlist);
         return new ResponseEntity<>(createdWishlist, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Wishlist> getWishlistById(@PathVariable Long id) {
-        Wishlist wishlist = (Wishlist)wishlistService.getWishlistById(id).orElseThrow(null);
+    public ResponseEntity<WishlistReadResponseDto> getWishlistById(@PathVariable Long id) {
+        WishlistReadResponseDto wishlist = wishlistService.getWishlistById(id);
         return new ResponseEntity<>(wishlist, HttpStatus.OK);
     }
 

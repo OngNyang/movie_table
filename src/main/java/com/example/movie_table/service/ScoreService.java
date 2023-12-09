@@ -1,7 +1,8 @@
 package com.example.movie_table.service;
 
+import com.example.movie_table.Entity.Movie;
 import com.example.movie_table.Entity.Score;
-import com.example.movie_table.dto.ScoreUpdateResponseDto;
+import com.example.movie_table.dto.*;
 import com.example.movie_table.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,16 @@ public class ScoreService {
     }
 
 
-    public Score createScore(Score score) {
-        return scoreRepository.save(score);
+    public ScoreCreateResponseDto createScore(Score score) {
+        scoreRepository.save(score);
+        return new ScoreCreateResponseDto(score.getId(), score.getMember(), score.getMovie(), score.getScore());
+//        return scoreRepository.save(score);
     }
 
-    public Optional<Score> getScoreById(Long id) {
-        return scoreRepository.findById(id);
+    public ScoreReadResponseDto getScoreById(Long id) {
+        Score score = scoreRepository.findById(id).orElseThrow();
+        return new ScoreReadResponseDto(score.getId(), score.getMovie(), score.getMember(),  score.getScore());
+//        return scoreRepository.findById(id);
     }
 
     public ScoreUpdateResponseDto updateScoreById(Long id, Score score) {

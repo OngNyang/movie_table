@@ -1,15 +1,12 @@
 package com.example.movie_table.service;
 
 import com.example.movie_table.Entity.Member;
-import com.example.movie_table.dto.LoginRequestDto;
-import com.example.movie_table.dto.LoginResponseDto;
-import com.example.movie_table.dto.UpdateResponseDto;
+import com.example.movie_table.dto.*;
 import com.example.movie_table.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,29 +19,38 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member createMember(Member member) {
-        return memberRepository.save(member);
+    public MemberCreateResponseDto createMember(Member member) {
+        memberRepository.save(member);
+        return new MemberCreateResponseDto(member.getId(), member.getName(), member.getEmail());
     }
 
-    public List<Member> getAllMembers() {
-        return memberRepository.findAll();
+    public List<MemberReadResponseDto> getAllMembers() {
+        List<MemberReadResponseDto>  dto = new ArrayList<>();
+        List<Member> members = memberRepository.findAll();
+        for (Member m : members) {
+            dto.add(new MemberReadResponseDto(m.getId(), m.getName(), m.getEmail()));
+        }
+        return dto;
+//        return memberRepository.findAll();
     }
 
-    public Optional<Member> getMemberById(Long id) {
-        return memberRepository.findById(id);
+    public MemberReadResponseDto getMemberById(Long id) {
+        Member member = memberRepository.findById(id).orElseThrow();
+        return new MemberReadResponseDto(member.getId(), member.getName(), member.getEmail());
+//        return memberRepository.findById(id);
     }
 
     public Optional<Member> getMemberByEmail(String email) {
         return memberRepository.findByEmail(email);
     }
 
-    public UpdateResponseDto updateMemberById(Long id, Member member) {
+    public MemberUpdateResponseDto updateMemberById(Long id, Member member) {
         Optional<Member> memberOptional = memberRepository.findById(id);
         if (memberOptional.isPresent()) {
             member.setId(id);
             memberRepository.save(member);
         }
-        return new UpdateResponseDto(id, member.getName(), member.getEmail());
+        return new MemberUpdateResponseDto(id, member.getName(), member.getEmail());
     }
 
     public void deleteMemberById(Long id) {

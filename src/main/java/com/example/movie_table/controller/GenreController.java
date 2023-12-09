@@ -1,10 +1,8 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Genre;
-import com.example.movie_table.dto.ActorUpdateResponseDto;
 import com.example.movie_table.dto.GenreUpdateResponseDto;
 import com.example.movie_table.service.GenreService;
-import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +31,7 @@ public class GenreController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<ActorUpdateResponseDto> updateGenreById(@PathVariable Long id, @RequestBody Genre genre) {
+    public ResponseEntity<GenreUpdateResponseDto> updateGenreById(@PathVariable Long id, @RequestBody Genre genre) {
         GenreUpdateResponseDto updatedGenre = genreService.updateGenreById(id, genre);
         return new ResponseEntity<>(updatedGenre, HttpStatus.OK);
     }

@@ -31,8 +31,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 //https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
-
+//	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
 	implementation 'mysql:mysql-connector-java:8.0.32'
 	
 }
