@@ -1,7 +1,7 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Director;
-import com.example.movie_table.dto.DirectorUpdateResponseDto;
+import com.example.movie_table.dto.response.director.DirectorUpdateResponseDto;
 import com.example.movie_table.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

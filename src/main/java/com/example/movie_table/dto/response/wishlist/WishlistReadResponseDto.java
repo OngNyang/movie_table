@@ -1,4 +1,4 @@
-package com.example.movie_table.dto;
+package com.example.movie_table.dto.response.wishlist;
 
 import com.example.movie_table.Entity.Member;
 import com.example.movie_table.Entity.Movie;

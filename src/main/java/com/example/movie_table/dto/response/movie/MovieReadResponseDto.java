@@ -1,10 +1,9 @@
-package com.example.movie_table.dto;
+package com.example.movie_table.dto.response.movie;
 
 import com.example.movie_table.Entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,9 +12,9 @@ import java.util.List;
 public class MovieReadResponseDto {
     private Long            id;
     private String          title;
-    private List<Director> directors;
-    private List<Genre>     genres;
-    private List<Actor>     actors;
+    private Director director;
+    private Genre genre;
+    private List<MovieActor>     actors;
     private LocalDate releaseDate;
     private Double          averageRating;
 }

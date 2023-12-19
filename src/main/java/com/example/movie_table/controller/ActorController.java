@@ -1,14 +1,12 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Actor;
-import com.example.movie_table.dto.ActorUpdateResponseDto;
+import com.example.movie_table.dto.response.actor.ActorUpdateResponseDto;
 import com.example.movie_table.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/actor")

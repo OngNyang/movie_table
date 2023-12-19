@@ -1,4 +1,4 @@
-package com.example.movie_table.dto;
+package com.example.movie_table.dto.request.member;
 
 import lombok.Data;
 

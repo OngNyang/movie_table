@@ -1,10 +1,11 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Movie;
-import com.example.movie_table.dto.MemberReadResponseDto;
-import com.example.movie_table.dto.MovieCreateResponseDto;
-import com.example.movie_table.dto.MovieReadResponseDto;
-import com.example.movie_table.dto.MovieUpdateResponseDto;
+import com.example.movie_table.dto.request.movie.MovieCreateRequestDto;
+import com.example.movie_table.dto.request.movie.MovieUpdateRequestDto;
+import com.example.movie_table.dto.response.movie.MovieCreateResponseDto;
+import com.example.movie_table.dto.response.movie.MovieReadResponseDto;
+import com.example.movie_table.dto.response.movie.MovieUpdateResponseDto;
 import com.example.movie_table.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,9 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieCreateResponseDto> createMovie(@RequestBody Movie movie) {
-        MovieCreateResponseDto createMovie = movieService.createMovie(movie);
-        return new ResponseEntity<>(createMovie, HttpStatus.CREATED);
-
+    public ResponseEntity<MovieCreateResponseDto> createMovie(@RequestBody MovieCreateRequestDto movie) {
+        MovieCreateResponseDto createdMovie = movieService.createMovie(movie);
+        return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
 
     }
 
@@ -48,7 +48,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MovieUpdateResponseDto> updateMovieById(@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity<MovieUpdateResponseDto> updateMovieById(@PathVariable Long id, @RequestBody MovieUpdateRequestDto movie) {
         MovieUpdateResponseDto updatedMovie = movieService.updateMovieById(id, movie);
         return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
     }

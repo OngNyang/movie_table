@@ -1,7 +1,7 @@
 package com.example.movie_table.service;
 
 import com.example.movie_table.Entity.Actor;
-import com.example.movie_table.dto.ActorUpdateResponseDto;
+import com.example.movie_table.dto.response.actor.ActorUpdateResponseDto;
 import com.example.movie_table.repository.ActorRepository;
 import org.springframework.stereotype.Service;
 

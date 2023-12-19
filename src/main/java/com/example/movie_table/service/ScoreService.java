@@ -1,8 +1,9 @@
 package com.example.movie_table.service;
 
-import com.example.movie_table.Entity.Movie;
 import com.example.movie_table.Entity.Score;
-import com.example.movie_table.dto.*;
+import com.example.movie_table.dto.response.score.ScoreCreateResponseDto;
+import com.example.movie_table.dto.response.score.ScoreReadResponseDto;
+import com.example.movie_table.dto.response.score.ScoreUpdateResponseDto;
 import com.example.movie_table.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

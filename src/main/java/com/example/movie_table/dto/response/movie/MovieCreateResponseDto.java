@@ -1,4 +1,4 @@
-package com.example.movie_table.dto;
+package com.example.movie_table.dto.response.movie;
 
 
 import lombok.AllArgsConstructor;

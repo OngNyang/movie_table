@@ -1,7 +1,7 @@
 package com.example.movie_table.service;
 
 import com.example.movie_table.Entity.Genre;
-import com.example.movie_table.dto.GenreUpdateResponseDto;
+import com.example.movie_table.dto.response.genre.GenreUpdateResponseDto;
 import com.example.movie_table.repository.GenreRepository;
 import org.springframework.stereotype.Service;
 

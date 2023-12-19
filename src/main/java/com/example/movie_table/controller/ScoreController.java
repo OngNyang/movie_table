@@ -1,9 +1,9 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Score;
-import com.example.movie_table.dto.ScoreCreateResponseDto;
-import com.example.movie_table.dto.ScoreReadResponseDto;
-import com.example.movie_table.dto.ScoreUpdateResponseDto;
+import com.example.movie_table.dto.response.score.ScoreCreateResponseDto;
+import com.example.movie_table.dto.response.score.ScoreReadResponseDto;
+import com.example.movie_table.dto.response.score.ScoreUpdateResponseDto;
 import com.example.movie_table.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

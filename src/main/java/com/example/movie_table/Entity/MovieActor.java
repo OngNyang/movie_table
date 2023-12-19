@@ -1,13 +1,20 @@
 package com.example.movie_table.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 import javax.persistence.*;
 
-@Table(name="movie_actors")
+@Table(name="movie_actor")
 @Entity
+@Data
+@Builder
 public class MovieActor {
     @Id
-    @Column(name = "movie_actor_id")
-    private Long movie_actor_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "movie_actor_id")
+    private Long movieActorId;
     //복합키를 생성하기 어려워서 매핑테이블에도 id를 넣어줌
 
     @ManyToOne
@@ -17,4 +24,12 @@ public class MovieActor {
     @ManyToOne
     @JoinColumn(name = "actor_id")
     private Actor actor;
+
+    public static MovieActor createMovieActor(Movie movie, Actor actor) {
+        return MovieActor.builder()
+                .actor(actor)
+                .movie(movie)
+                .build();
+    }
+
 }

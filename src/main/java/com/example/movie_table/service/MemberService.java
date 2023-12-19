@@ -1,7 +1,13 @@
 package com.example.movie_table.service;
 
 import com.example.movie_table.Entity.Member;
-import com.example.movie_table.dto.*;
+import com.example.movie_table.dto.request.member.LoginRequestDto;
+import com.example.movie_table.dto.request.member.MemberCreateRequestDto;
+import com.example.movie_table.dto.request.member.MemberUpdateRequestDto;
+import com.example.movie_table.dto.response.member.LoginResponseDto;
+import com.example.movie_table.dto.response.member.MemberCreateResponseDto;
+import com.example.movie_table.dto.response.member.MemberReadResponseDto;
+import com.example.movie_table.dto.response.member.MemberUpdateResponseDto;
 import com.example.movie_table.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +25,9 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public MemberCreateResponseDto createMember(Member member) {
-        memberRepository.save(member);
-        return new MemberCreateResponseDto(member.getId(), member.getName(), member.getEmail());
+    public MemberCreateResponseDto createMember(MemberCreateRequestDto member) {
+        Member savedMember = memberRepository.save(Member.signup(member));
+        return new MemberCreateResponseDto(savedMember.getId(), savedMember.getName(), savedMember.getEmail());
     }
 
     public List<MemberReadResponseDto> getAllMembers() {
@@ -44,8 +50,18 @@ public class MemberService {
         return memberRepository.findByEmail(email);
     }
 
-    public MemberUpdateResponseDto updateMemberById(Long id, Member member) {
+//    public MemberUpdateResponseDto updateMemberById(Long id, Member member) {
+//        Optional<Member> memberOptional = memberRepository.findById(id);
+//        if (memberOptional.isPresent()) {
+//            member.setId(id);
+//            memberRepository.save(member);
+//        }
+//        return new MemberUpdateResponseDto(id, member.getName(), member.getEmail());
+//    }
+
+    public MemberUpdateResponseDto updateMemberById(Long id, MemberUpdateRequestDto memberDto) {
         Optional<Member> memberOptional = memberRepository.findById(id);
+        Member member = Member.createMember(memberDto);
         if (memberOptional.isPresent()) {
             member.setId(id);
             memberRepository.save(member);

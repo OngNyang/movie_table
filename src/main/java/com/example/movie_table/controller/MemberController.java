@@ -1,7 +1,13 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Member;
-import com.example.movie_table.dto.*;
+import com.example.movie_table.dto.request.member.LoginRequestDto;
+import com.example.movie_table.dto.request.member.MemberCreateRequestDto;
+import com.example.movie_table.dto.request.member.MemberUpdateRequestDto;
+import com.example.movie_table.dto.response.member.LoginResponseDto;
+import com.example.movie_table.dto.response.member.MemberCreateResponseDto;
+import com.example.movie_table.dto.response.member.MemberReadResponseDto;
+import com.example.movie_table.dto.response.member.MemberUpdateResponseDto;
 import com.example.movie_table.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +28,7 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberCreateResponseDto> createMember(@RequestBody Member member) {
+    public ResponseEntity<MemberCreateResponseDto> createMember(@RequestBody MemberCreateRequestDto member) {
         MemberCreateResponseDto createdMember = memberService.createMember(member);
         return new ResponseEntity<>(createdMember, HttpStatus.CREATED);
     }
@@ -41,11 +47,18 @@ public class MemberController {
     }
 
 //    @UpdateMapping("/{id}")
+//    @PutMapping("/{id}")
+//    public ResponseEntity<MemberUpdateResponseDto> updateMemberById(@PathVariable Long id, @RequestBody Member member) {
+//        MemberUpdateResponseDto updatedMember = memberService.updateMemberById(id, member);
+//        return new ResponseEntity<>(updatedMember, HttpStatus.OK);
+//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<MemberUpdateResponseDto> updateMemberById(@PathVariable Long id, @RequestBody Member member) {
-        MemberUpdateResponseDto updatedMember = memberService.updateMemberById(id, member);
+    public ResponseEntity<MemberUpdateResponseDto> updateMemberById(@PathVariable Long id, @RequestBody MemberUpdateRequestDto memberDto) {
+        MemberUpdateResponseDto updatedMember = memberService.updateMemberById(id, memberDto);
         return new ResponseEntity<>(updatedMember, HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMemberById(@PathVariable Long id) {

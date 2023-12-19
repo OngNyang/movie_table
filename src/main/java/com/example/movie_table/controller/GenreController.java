@@ -1,7 +1,7 @@
 package com.example.movie_table.controller;
 
 import com.example.movie_table.Entity.Genre;
-import com.example.movie_table.dto.GenreUpdateResponseDto;
+import com.example.movie_table.dto.response.genre.GenreUpdateResponseDto;
 import com.example.movie_table.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

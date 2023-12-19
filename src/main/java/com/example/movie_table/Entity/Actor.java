@@ -15,6 +15,7 @@ public class Actor {
     private Long        id;
     private String      name;
     private LocalDate   birthdate;
-    @OneToMany
-    private List<Movie> movies;
+    @OneToMany(mappedBy = "actor")
+    private List<MovieActor> movies;
+//    private List<Movie> movies;
 }

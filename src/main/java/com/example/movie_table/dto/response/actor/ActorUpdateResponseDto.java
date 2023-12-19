@@ -1,12 +1,11 @@
-package com.example.movie_table.dto;
+package com.example.movie_table.dto.response.actor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MemberUpdateResponseDto {
+public class ActorUpdateResponseDto {
     private Long id;
     private String name;
-    private String email;
 }
