@@ -1,7 +1,9 @@
 package com.example.movie_table.controller;
 
-import com.example.movie_table.Entity.Score;
+import com.example.movie_table.dto.request.score.ScoreCreateRequestDto;
+import com.example.movie_table.dto.request.score.ScoreUpdateRequestDto;
 import com.example.movie_table.dto.response.score.ScoreCreateResponseDto;
+import com.example.movie_table.dto.response.score.ScoreDeleteResponseDto;
 import com.example.movie_table.dto.response.score.ScoreReadResponseDto;
 import com.example.movie_table.dto.response.score.ScoreUpdateResponseDto;
 import com.example.movie_table.service.ScoreService;
@@ -20,9 +22,14 @@ public class ScoreController {
         this.scoreService = scoreService;
     }
 
+//    @PostMapping
+//    public ResponseEntity<ScoreCreateResponseDto> createScore(@RequestBody  Score score) {
+//        ScoreCreateResponseDto createdScore = scoreService.createScore(score);
+//        return new ResponseEntity<>(createdScore, HttpStatus.CREATED);
+//    }
     @PostMapping
-    public ResponseEntity<ScoreCreateResponseDto> createScore(@RequestBody  Score score) {
-        ScoreCreateResponseDto createdScore = scoreService.createScore(score);
+    public ResponseEntity<ScoreCreateResponseDto> createScore(@RequestBody ScoreCreateRequestDto scoreDto) {
+        ScoreCreateResponseDto createdScore = scoreService.createScore(scoreDto);
         return new ResponseEntity<>(createdScore, HttpStatus.CREATED);
     }
 
@@ -33,15 +40,15 @@ public class ScoreController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ScoreUpdateResponseDto> updateScoreById(@PathVariable Long id, @RequestBody Score score) {
-        ScoreUpdateResponseDto updatedScore = scoreService.updateScoreById(id, score);
+    public ResponseEntity<ScoreUpdateResponseDto> updateScoreById(@PathVariable Long id, @RequestBody ScoreUpdateRequestDto scoreDto) {
+        ScoreUpdateResponseDto updatedScore = scoreService.updateScoreById(id, scoreDto);
         return new ResponseEntity<>(updatedScore, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteScoreById(@PathVariable Long id) {
+    public ResponseEntity<ScoreDeleteResponseDto> deleteScoreById(@PathVariable Long id) {
         scoreService.deleteScoreById(id);
-        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new ScoreDeleteResponseDto("삭제되었습니다.") , HttpStatus.NO_CONTENT);
     }
 
 

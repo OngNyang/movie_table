@@ -44,7 +44,6 @@ public class MovieService {
 public MovieCreateResponseDto createMovie(MovieCreateRequestDto movieDto) {
         Movie movie = Movie.createMovie(movieDto);
 
-
         movie.setDirector(directorRepository.findByName(movieDto.getDirectorName()).orElseThrow());
         movie.setGenre(genreRepository.findByName(movieDto.getGenreName()).orElseThrow());
         for (String actorName : movieDto.getActorNameList()) {
@@ -59,6 +58,8 @@ public MovieCreateResponseDto createMovie(MovieCreateRequestDto movieDto) {
 //        for (String genreName : movieDto.getGenreNameList()) {
 //            movie.getGenres().add(genreRepository.findByName(genreName).orElseThrow());
 //        }
+
+        System.out.println(movie.getId());
 
         Movie savedMovie = movieRepository.save(movie);
         return new MovieCreateResponseDto(savedMovie.getId(), savedMovie.getTitle(), savedMovie.getReleaseDate(), savedMovie.getAverageRating());

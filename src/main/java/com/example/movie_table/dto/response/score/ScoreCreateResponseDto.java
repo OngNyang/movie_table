@@ -9,7 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScoreCreateResponseDto {
     private Long id;
-    private Member member;
-    private Movie movie;
+    private long member_id;
+    private long movie_id;
+//    private Member member;
+//    private Movie movie;
     private int score;
 }

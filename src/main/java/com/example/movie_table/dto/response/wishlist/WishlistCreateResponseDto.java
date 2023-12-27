@@ -9,6 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class WishlistCreateResponseDto {
     private Long id;
-    private Movie movie;
-    private Member member;
+//    private Movie movie;
+//    private Member member;
+    private long    movieId;
+    private long    memberId;
 }
+

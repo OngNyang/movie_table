@@ -9,6 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScoreUpdateResponseDto {
     private Long id;
-    private Member member;
-    private Movie movie;
+//    private long memberId;
+//    private long movieId;
+//    private int score;
+//    private Member member;
+//    private Movie movie;
 }

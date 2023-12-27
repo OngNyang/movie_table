@@ -8,6 +8,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class WishlistReadResponseDto {
         private Long id;
-        private Movie movie;
-        private Member member;
+        private long    movie_id;
+        private long    member_id;
+//        private Movie movie;
+//        private Member member;
 }

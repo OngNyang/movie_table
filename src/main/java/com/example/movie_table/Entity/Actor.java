@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Actor {
+public class    Actor {
     @Id
     private Long        id;
     private String      name;
@@ -19,3 +19,5 @@ public class Actor {
     private List<MovieActor> movies;
 //    private List<Movie> movies;
 }
+
+

@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Movie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long            id;
     private String          title;
     @ManyToOne
@@ -29,11 +30,11 @@ public class Movie {
     @JoinColumn(name = "genre_id", referencedColumnName = "genre_id")
     private Genre     genre;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
-//    private List<Actor>     actors;
     private List<MovieActor>     actors;
+    //    private List<Actor>     actors;
     private LocalDate       releaseDate;
     private Double          averageRating;
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
     private List<Wishlist> wishlists;
     @OneToMany(mappedBy = "movie")
     private List<Score> scores;

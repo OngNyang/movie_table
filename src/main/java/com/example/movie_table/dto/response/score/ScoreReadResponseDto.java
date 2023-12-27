@@ -9,7 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScoreReadResponseDto {
     private Long id;
-    private Movie movie;
-    private Member member;
+    private long movieId;
+    private long memberId;
+//    private Movie movie;
+//    private Member member;
     private int score;
 }
